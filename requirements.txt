@@ -1,7 +1,5 @@
 build==1.2.1
 cffi==1.16.0
--e git+https://github.com/cthadeufaria/raspberry-pi-leap-motion-integration.git@aa0b5070dac04d218beeab8af289fb38b379e320#egg=leap&subdirectory=leapc-python-api
-leapc-cffi==0.0.1
 numpy==2.0.1
 opencv-python==4.10.0.84
 packaging==24.1

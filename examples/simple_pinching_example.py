@@ -30,7 +30,7 @@ def fingers_pinching(thumb: ldt.Vector, index: ldt.Vector):
 
 class PinchingListener(leap.Listener):
     def on_tracking_event(self, event):
-        if event.tracking_frame_id % 50 == 0:
+        if event.tracking_frame_id % 2 == 0:
             for hand in event.hands:
                 hand_type = "Left" if str(hand.type) == "HandType.Left" else "Right"
 
@@ -41,6 +41,7 @@ class PinchingListener(leap.Listener):
                 pinching_str = "not pinching" if not pinching else "" + str("pinching")
                 print(
                     f"{hand_type} hand thumb and index {pinching_str} with position diff ({array[0]}, {array[1]}, {array[2]})."
+                    # f"hand (x, y, z): ({hand.palm.position.x}, {hand.palm.position.y}, {hand.palm.position.z})"
                 )
 
 

@@ -15,14 +15,22 @@ class MyApp(ShowBase):
         self.donut.setPos(0, 0, 3.5)
         self.donut.reparentTo(self.render)
 
+        # Initial camera control variables
+        self.hand_pos = (0, 0, 0)
+        self.angleDegrees = [0, 0, 0]
+
     def spinCameraTask(self, task):
-        angleDegrees = task.time * 6.0
-        angleRadians = angleDegrees * (pi / 180.0)
-        # TODO 1: implement leap motion control on camera.
-        self.camera.setPos(20 * sin(angleRadians), -20 * cos(angleRadians), 3)
-        self.camera.setHpr(angleDegrees, 0, 0)
+        angleRadians = [angle * (pi / 180.0) for angle in self.angleDegrees]
+        
+        x = 20 * sin(angleRadians[0])
+        y = -20 * cos(angleRadians[0])
+        
+        self.camera.setPos(x, y, 3 + self.angleDegrees[2] / 10.0)  # Use z-axis for height adjustment
+        self.camera.setHpr(self.angleDegrees[0], self.angleDegrees[1], self.angleDegrees[2])
+        
+        self.camera.lookAt(self.donut)
+        
         return Task.cont
-
-
-app = MyApp()
-app.run()
+    
+    def update_camera_position(self, x, y, z):
+        self.angleDegrees = [x / 1.5, y, z]
