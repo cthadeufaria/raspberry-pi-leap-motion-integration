@@ -50,17 +50,3 @@ class PinchingListener(leap.Listener):
 
                 if pinching:
                     self.update_callback(hand.palm.position.x, hand.palm.position.y, hand.palm.position.z)
-
-# def main():
-#     listener = PinchingListener()
-
-#     connection = leap.Connection()
-#     connection.add_listener(listener)
-
-#     with connection.open():
-#         while True:
-#             time.sleep(1)
-
-
-# if __name__ == "__main__":
-#     main()
